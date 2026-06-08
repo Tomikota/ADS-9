@@ -1,41 +1,45 @@
-// Copyright 2022 NNTU-CS
+// Copyright 2026 NNTU-CS
 
 #include <iostream>
 #include <vector>
 
-#include "tree.h"
-
-void print(std::vector<char> v) {
-    for (size_t i = 0; i < v.size(); i++) {
-        std::cout << v[i];
-    }
-
-    std::cout << std::endl;
-}
+#include "../include/tree.h"
 
 int main() {
-    std::vector<char> in =
-        {'1', '3', '5', '7'};
+    std::vector<char> in = {'1', '2', '3'};
 
     PMTree tree(in);
 
-    std::vector<std::vector<char>> perms =
-        getAllPerms(tree);
+    std::cout << "All permutations:" << std::endl;
 
-    for (size_t i = 0; i < perms.size(); i++) {
-        print(perms[i]);
+    std::vector<std::vector<char>> perms = getAllPerms(tree);
+
+    for (const auto& perm : perms) {
+        for (char c : perm)
+            std::cout << c;
+
+        std::cout << std::endl;
     }
 
     std::cout << std::endl;
 
-    print(getPerm1(tree, 1));
+    std::vector<char> p1 = getPerm1(tree, 1);
 
-    print(getPerm2(tree, 2));
+    std::cout << "Permutation #1: ";
+
+    for (char c : p1)
+        std::cout << c;
+
+    std::cout << std::endl;
+
+    std::vector<char> p2 = getPerm2(tree, 2);
+
+    std::cout << "Permutation #2: ";
+
+    for (char c : p2)
+        std::cout << c;
+
+    std::cout << std::endl;
 
     return 0;
-}// Copyright 2022 NNTU-CS
-#include "tree.h"
-
-int main() {
-  return 0;
 }
