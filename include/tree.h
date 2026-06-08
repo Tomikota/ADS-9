@@ -1,4 +1,4 @@
-// Copyright 2022 NNTU-CS
+// Copyright 2026 NNTU-CS
 
 #pragma once
 
@@ -66,7 +66,7 @@ class PMTree {
     }
 
     void clear(Node* node) {
-        if (!node)
+        if (node == nullptr)
             return;
 
         for (auto child : node->children)
@@ -77,5 +77,7 @@ class PMTree {
 };
 
 std::vector<std::vector<char>> getAllPerms(PMTree& tree);
+
 std::vector<char> getPerm1(PMTree& tree, int num);
+
 std::vector<char> getPerm2(PMTree& tree, int num);
