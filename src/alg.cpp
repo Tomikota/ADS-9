@@ -1,10 +1,44 @@
+// Copyright 2026 NNTU-CS
+
+#include "../include/tree.h"
+
+#include <vector>
+
+static int factorial(int n) {
+    int result = 1;
+
+    for (int i = 2; i <= n; i++)
+        result *= i;
+
+    return result;
+}
+
+std::vector<std::vector<char>> getAllPerms(PMTree& tree) {
+    std::vector<std::vector<char>> result;
+    std::vector<char> current;
+
+    tree.collect(tree.root, &current, &result);
+
+    return result;
+}
+
+std::vector<char> getPerm1(PMTree& tree, int num) {
+    std::vector<std::vector<char>> perms = getAllPerms(tree);
+
+    if (num < 1 || num > static_cast<int>(perms.size()))
+        return {};
+
+    return perms[num - 1];
+}
+
 std::vector<char> getPerm2(PMTree& tree, int num) {
     std::vector<char> result;
 
     if (num <= 0)
         return result;
 
-    int total = factorial(tree.root->children.size());
+    int total = factorial(
+        static_cast<int>(tree.root->children.size()));
 
     if (num > total)
         return {};
@@ -14,7 +48,8 @@ std::vector<char> getPerm2(PMTree& tree, int num) {
     num--;
 
     while (!current->children.empty()) {
-        int count = factorial(current->children.size() - 1);
+        int count = factorial(
+            static_cast<int>(current->children.size()) - 1);
 
         int index = num / count;
 
